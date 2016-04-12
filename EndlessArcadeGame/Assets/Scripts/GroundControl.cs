@@ -13,6 +13,6 @@ public class GroundControl : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         float offset = Time.time * speed;
-        renderer.material.mainTextureOffset = new Vector2(0, -offset);
+        GetComponent<Renderer>().material.mainTextureOffset = new Vector2(0, -offset);
 	}
 }
