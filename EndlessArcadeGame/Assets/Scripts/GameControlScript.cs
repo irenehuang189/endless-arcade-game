@@ -2,12 +2,13 @@
 using System.Collections;
 
 public class GameControlScript : MonoBehaviour {
+    public bool isGameOver = false;
+    public GUISkin skin;
     private float timeRemaining = 10;
     private float timeExtension = 3;
     private float timeReduction = 2;
     private float totalTimeElapsed = 0;
     private float score = 0;
-    public bool isGameOver = false;
 
 	// Use this for initialization
 	void Start () {
@@ -29,6 +30,7 @@ public class GameControlScript : MonoBehaviour {
 	}
 
     void OnGUI() {
+        GUI.skin = skin;
         if (!isGameOver)
         {
             GUI.Label(new Rect(10, 10, Screen.width / 5, Screen.height / 6), "TIME LEFT: " + ((int)timeRemaining).ToString());
@@ -38,20 +40,17 @@ public class GameControlScript : MonoBehaviour {
         {
             GUI.Box(new Rect(Screen.width / 4, Screen.height / 4, Screen.width / 2, Screen.height / 2), "GAME OVER\nYOUR SCORE: " + (int)score);
 
-            // Restart game
-            if (GUI.Button(new Rect(Screen.width / 4 + 10, Screen.height / 4 + Screen.height / 10 + 10, Screen.width / 2 - 20, Screen.height / 10), "RESTART"))
+            if (GUI.Button(new Rect(Screen.width / 4 + 20, Screen.height / 4 + Screen.height / 10 + 10, Screen.width / 2 - 40, Screen.height / 10), "RESTART"))
             {
                 Application.LoadLevel(Application.loadedLevel);
             }
 
-            // Load main menu
-            if (GUI.Button(new Rect(Screen.width / 4 + 10, Screen.height / 4 + 2 * Screen.height / 10 + 10, Screen.width / 2 - 20, Screen.height / 10), "MAIN MENU"))
+            if (GUI.Button(new Rect(Screen.width / 4 + 20, Screen.height / 4 + 2 * Screen.height / 10 + 10, Screen.width / 2 - 40, Screen.height / 10), "MAIN MENU"))
             {
                 Application.LoadLevel(1);
             }
 
-            // Exit
-            if (GUI.Button(new Rect(Screen.width / 4 + 10, Screen.height / 4 + 3 * Screen.height / 10 + 10, Screen.width / 2 - 20, Screen.height / 10), "EXIT GAME"))
+            if (GUI.Button(new Rect(Screen.width / 4 + 20, Screen.height / 4 + 3 * Screen.height / 10 + 10, Screen.width / 2 - 40, Screen.height / 10), "EXIT GAME"))
             {
                 Application.Quit();
             }

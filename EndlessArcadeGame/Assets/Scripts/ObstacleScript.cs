@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class ObstacleScript : MonoBehaviour {
-    public float objectSpeed = -0.5f;
+    public float objectSpeed = -.2f;
 
     // Use this for initialization
     void Start()
@@ -12,6 +12,9 @@ public class ObstacleScript : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(0, objectSpeed, 0);
+        if (Time.timeScale == 1)
+        {
+            transform.Translate(0, objectSpeed, 0);
+        }
     }
 }
