@@ -4,6 +4,7 @@ using System.Collections;
 public class GameControlScript : MonoBehaviour {
     public bool isGameOver = false;
     public GUISkin skin;
+    public string levelToLoad;
     private float timeRemaining = 10;
     private float timeExtension = 3;
     private float timeReduction = 2;
@@ -47,7 +48,7 @@ public class GameControlScript : MonoBehaviour {
 
             if (GUI.Button(new Rect(Screen.width / 4 + 20, Screen.height / 4 + 2 * Screen.height / 10 + 10, Screen.width / 2 - 40, Screen.height / 10), "MAIN MENU"))
             {
-                Application.LoadLevel(1);
+                Application.LoadLevel(levelToLoad);
             }
 
             if (GUI.Button(new Rect(Screen.width / 4 + 20, Screen.height / 4 + 3 * Screen.height / 10 + 10, Screen.width / 2 - 40, Screen.height / 10), "EXIT GAME"))

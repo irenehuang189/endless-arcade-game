@@ -10,6 +10,8 @@ public class CountDownScript : MonoBehaviour {
     public int maxCountDown;
     private int countDown;
     public TextMesh guiTextCountDown;
+    public AudioSource countDownSound;
+    public bool isCountDown = false;
 
 	// Use this for initialization
 	void Start () {
@@ -25,6 +27,7 @@ public class CountDownScript : MonoBehaviour {
         rightWall.GetComponent<GroundControl>().enabled = false;
         ground.GetComponent<GroundControl>().enabled = false;
         character.GetComponent<Animation>().enabled = false;
+        character.GetComponent<AudioSource>().enabled = false;
 
         StartCoroutine(CountDown());
 	}
@@ -37,6 +40,7 @@ public class CountDownScript : MonoBehaviour {
     // Count down
     IEnumerator CountDown() {
         // Start the countdown
+        countDownSound.PlayDelayed(.4f);
         for (countDown = maxCountDown; countDown > -1; countDown--)
         {
             if (countDown != 0)
@@ -48,6 +52,8 @@ public class CountDownScript : MonoBehaviour {
             {
                 guiTextCountDown.text = "GO!";
                 yield return new WaitForSeconds(1);
+                countDownSound.Stop();
+                isCountDown = true;
             }
         }
 
@@ -61,6 +67,7 @@ public class CountDownScript : MonoBehaviour {
         rightWall.GetComponent<GroundControl>().enabled = true;
         ground.GetComponent<GroundControl>().enabled = true;
         character.GetComponent<Animation>().enabled = true;
+        character.GetComponent<AudioSource>().enabled = true;
 
         // Disable the GUIText
         guiTextCountDown.GetComponent<Renderer>().enabled = false;
